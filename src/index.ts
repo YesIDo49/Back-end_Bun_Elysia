@@ -1,7 +1,53 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
+import { AnimeDatabase } from "./db.js";
+import { html } from '@elysiajs/html'
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
-
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+new Elysia()
+  .use(html())
+  .decorate("db", new AnimeDatabase())
+  .get("/", () => Bun.file("./src/index.html").text())
+  .get("/script.js", () => Bun.file("./src/script.js").text())
+  .get("/animes", ({ db }) => db.getAnimes())
+  .post(
+    "/animes",
+    async ({ db, body }) => {
+      const id = (await db.addAnime(body)).id
+      return { success: true, id };
+    },
+    {
+      schema: {
+        body: t.Object({
+          name: t.String(),
+          mangaka: t.String(),
+        }),
+      },
+    }
+  )
+  .put(
+    "/animes/:id",
+    ({ db, params, body }) => {
+      try {
+        db.updateAnime(parseInt(params.id), body) 
+        return { success: true };
+      } catch (e) {
+        return { success: false };
+      }
+    },
+    {
+      schema: {
+        body: t.Object({
+          name: t.String(),
+          mangaka: t.String(),
+        }),
+      },
+    }
+  )
+  .delete("/animes/:id", ({ db, params }) => {
+    try {
+      db.deleteAnime(parseInt(params.id))
+      return { success: true };
+    } catch (e) {
+      return { success: false };
+    }
+  })
+  .listen(3000);
