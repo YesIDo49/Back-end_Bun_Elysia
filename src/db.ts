@@ -24,7 +24,7 @@ export class AnimeDatabase {
 
     // Add a anime
     async addAnime(anime: Anime) {
-        // q: Get id type safely 
+        // q: Get id type safely
         return this.db.query(`INSERT INTO animes (name, mangaka) VALUES (?, ?) RETURNING id`).get(anime.name, anime.mangaka) as Anime;
     }
 

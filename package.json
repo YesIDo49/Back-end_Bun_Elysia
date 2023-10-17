@@ -10,7 +10,11 @@
     "elysia": "^0.7.17"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "^1.0.6"
   },
-  "module": "src/index.js"
+  "module": "src/index.js",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
 }
