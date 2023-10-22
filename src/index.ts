@@ -1,12 +1,13 @@
 import { Elysia } from 'elysia';
 import './database/db.setup';
 import { usersController } from './controllers/users.controller';
-import { staticDataController } from './controllers/static-data.controller';
-import {html} from "@elysiajs/html/dist";
 import {swagger} from "@elysiajs/swagger";
-
+import {helmet} from "elysia-helmet";
+import { basicAuth } from '@eelkevdbos/elysia-basic-auth'
 const PORT = process.env.PORT || 3000;
 export const app = new Elysia();
+
+process.env["BASIC_AUTH_CREDENTIALS"] = "admin:admin"
 
 app
     .use(
@@ -23,6 +24,10 @@ app
                 ]
             },
         }))
+    .use(basicAuth())
+    .get("/", () => "private")
+    // access to realm within a handler
+    .get('/private/realm-stored', ({ store }) => store.basicAuthRealm)
     .get('/', () =>  Bun.file("./src/index.html"), {
         detail: {
             summary: 'Index',
@@ -37,6 +42,16 @@ app
     })
     .get("/script.js", () => Bun.file("./src/script.js"))
     .use(usersController)
-    .listen(PORT, () => {
-        console.log(`🦊 Elysia is running at ${app.server?.hostname}:${PORT}`);
+    .use(
+        basicAuth({
+            users: [{ username: 'admin', password: 'admin' }],
+            realm: '',
+            errorMessage: 'Unauthorized',
+            exclude: ['public/**'],
+            noErrorThrown: false,
+        })
+    )
+    .use(helmet()).listen(PORT, () => {
+    console.log(`🦊 Elysia is running at ${app.server?.hostname}:${PORT}`);
     });
+

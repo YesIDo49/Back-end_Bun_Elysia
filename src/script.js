@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", function () {
 }, false);
 
 const addUser = () => {
-    const newUser = prompt("User username & password (separated by a comma)");
+    const newUser = prompt("User username, email & password (separated by a comma)");
     if (newUser) {
         const [username, email, password] = newUser.split(",");
         fetch("/users", {
@@ -38,6 +38,7 @@ const addUser = () => {
                     </li>
                 `
                 }
+                window.location.reload();
             });
     }
 };
@@ -55,6 +56,7 @@ const deleteUser = () => {
                 if (res.success) {
                     document.getElementById(userId).remove();
                 }
+                window.location.reload();
             });
     }
 };
@@ -81,6 +83,7 @@ const updateUser = () => {
                         ID: ${userId} <br> Name: ${username} <br> Email: ${email} <br> Password: ${password}
                     `
                     }
+                    window.location.reload();
                 });
         }
     }
