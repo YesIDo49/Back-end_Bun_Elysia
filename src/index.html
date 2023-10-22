@@ -3,16 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
-    <script src="/script.js"></script>
+    <title>BunLysia</title>
+    <script src="./script.js"></script>
 </head>
 <body>
-    <h1>CrunchyWrap</h1>
+    <h1>BunLysia (Bun & Elysia ! Get it ?)</h1>
     <a href="/swagger">Go to Swagger</a>
     <br><br>
-    <button onclick="addUser()" type="button">Add User</button>
-    <button onclick="deleteUser()" type="button">Remove User</button>
-    <button onclick="updateUser()" type="button">Update User</button>
-    <ul id="userList"></ul>
+    <div class="section">
+        <div class="section__left">
+            <h2>Users List</h2>
+            <br>
+            <button onclick="addUser()" type="button">Add User</button>
+            <ul id="userList"></ul>
+        </div>
+        <div class="section__right">
+            <h2>Kirby List</h2>
+            <br>
+            <button onclick="addKirby()" type="button">Add Kirby</button>
+            <ul id="kirbyList"></ul>
+        </div>
+    </div>
+
 </body>
+
+<style>
+    .section {
+        display: flex;
+        justify-content: space-between;
+    }
+    .section__left {
+        width: 50%;
+    }
+    .section__right {
+        width: 50%;
+    }
+</style>
+
 </html>

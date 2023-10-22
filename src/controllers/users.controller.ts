@@ -36,7 +36,7 @@ export const usersController = (app: Elysia) =>
             }, {
                 detail: {
                     summary: 'Add one user',
-                    tags: ['Crud'],
+                    tags: ['Crud User'],
                     description: "Add resources for one new user in database",
                     responses: {
                         "200": {
@@ -59,7 +59,7 @@ export const usersController = (app: Elysia) =>
             }, {
                 detail: {
                     summary: 'Get all users',
-                    tags: ['Crud'],
+                    tags: ['Crud User'],
                     description: "Shows all users in database",
                     responses: {
                         "200": {
@@ -94,7 +94,7 @@ export const usersController = (app: Elysia) =>
             }, {
                 detail: {
                     summary: 'Get one user',
-                    tags: ['Crud'],
+                    tags: ['Crud User'],
                     description: "Shows one specific user in database",
                     responses: {
                         "200": {
@@ -135,7 +135,7 @@ export const usersController = (app: Elysia) =>
             }, {
                 detail: {
                     summary: 'Modify one user',
-                    tags: ['Crud'],
+                    tags: ['Crud User'],
                     description: "Update one specific user in database",
                     responses: {
                         "200": {
@@ -175,7 +175,7 @@ export const usersController = (app: Elysia) =>
             },{
                     detail: {
                         summary: 'Delete one user',
-                        tags: ['Crud'],
+                        tags: ['Crud User'],
                         description: "Remove one specific user in database",
                         responses: {
                             "200": {

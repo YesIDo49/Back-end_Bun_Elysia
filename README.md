@@ -1,5 +1,6 @@
 # Architecture Back-end
 Ce projet est un template pour démarrer un projet back-end avec Bun et Elysia. Avec ce projet, vous pourrez faire un CRUD basique sur une base de données MongoDB. 
+Vous pourrez ajouter des users et des Kirby sur la base de données.
 De plus, plusieurs dépendances sont déjà installées et configurées pour vous améliorer ce projet, dont une authentification.
 
 Important : L'authentification étant paramétrée pour une utilisation en local, il est nécessaire de la reconfigurer pour une utilisation en production.
@@ -77,7 +78,7 @@ bun add elysia-helmet
 ```bash
 bun add @eelkevdbos/elysia-basic-auth
 ```
-- Basic auth est un middleware qui permet de sécuriser les routes de votre choix avec une authentification basique. 
+- Basic auth est un middleware qui permet de sécuriser les routes de votre choix avec une authentification basique. Les informations de login sont stockées sur le cache de votre navigateur
 - Comme dit plus tôt, les logins actuelles sont :
 #### username : admin
 #### password : admin

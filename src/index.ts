@@ -4,6 +4,7 @@ import { usersController } from './controllers/users.controller';
 import {swagger} from "@elysiajs/swagger";
 import {helmet} from "elysia-helmet";
 import { basicAuth } from '@eelkevdbos/elysia-basic-auth'
+import {kirbysController} from "./controllers/kirbycontroller";
 const PORT = process.env.PORT || 3000;
 export const app = new Elysia();
 
@@ -20,7 +21,8 @@ app
                 },
                 tags: [
                     { name: 'App', description: 'General endpoints' },
-                    { name: 'Crud', description: 'CRUD for users' }
+                    { name: 'Crud User', description: 'CRUD for users' },
+                    { name: 'Crud Kirby', description: 'CRUD for Kirby' }
                 ]
             },
         }))
@@ -42,6 +44,7 @@ app
     })
     .get("/script.js", () => Bun.file("./src/script.js"))
     .use(usersController)
+    .use(kirbysController)
     .use(
         basicAuth({
             users: [{ username: 'admin', password: 'admin' }],
