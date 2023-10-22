@@ -2,7 +2,6 @@
   "name": "app",
   "version": "1.0.50",
   "scripts": {
-    "test": "bun test ./test/**.test.ts",
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {

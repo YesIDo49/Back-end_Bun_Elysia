@@ -4,60 +4,47 @@ import User, { IUser } from '../entities/user.schema';
 export const usersController = (app: Elysia) =>
     app.group('/users', (app: Elysia) =>
         app
-            // Validating required properties using Guard schema
-            // .guard({
-            //         body: t.Object({
-            //             username: t.String(),
-            //             email: t.String(),
-            //             password: t.String()
-            //         })
-            //     }, (app: Elysia) => app
-                    // This route is protected by the Guard above
-                    .post('/', async (handler: Elysia.Handler) => {
-                        try {
+            .post('/', async (handler: Elysia.Handler) => {
+                try {
 
-                            const newUser = new User();
-                            newUser.username = handler.body.username;
-                            newUser.email = handler.body.email;
-                            newUser.password = handler.body.password;
+                    const newUser = new User();
+                    newUser.username = handler.body.username;
+                    newUser.email = handler.body.email;
+                    newUser.password = handler.body.password;
 
-                            const savedUser = await newUser.save();
+                    const savedUser = await newUser.save();
 
-                            handler.set.status = 201;
+                    handler.set.status = 201;
 
-                            return newUser;
-                        } catch (e: any) {
-                            // If unique mongoose constraint (for username or email) is violated
-                            if (e.name === 'MongoServerError' && e.code === 11000) {
-                                handler.set.status = 422;
-                                return {
-                                    message: 'Resource already exists!',
-                                    status: 422,
-                                };
-                            }
+                    return newUser;
+                } catch (e: any) {
+                    // If unique mongoose constraint (for username or email) is violated
+                    if (e.name === 'MongoServerError' && e.code === 11000) {
+                        handler.set.status = 422;
+                        return {
+                            message: 'Resource already exists!',
+                            status: 422,
+                        };
+                    }
 
-                            handler.set.status = 500;
-                            return {
-                                message: 'Unable to save entry to the database!',
-                                status: 500,
-                            };
+                    handler.set.status = 500;
+                    return {
+                        message: 'Unable to save entry to the database!',
+                        status: 500,
+                    };
+                }
+            }, {
+                detail: {
+                    summary: 'Add one user',
+                    tags: ['Crud'],
+                    description: "Add resources for one new user in database",
+                    responses: {
+                        "200": {
+                            description: "Add resources for one new user",
                         }
-                    }, {
-                        detail: {
-                            summary: 'Add one user',
-                            tags: ['Crud'],
-                            description: "Add resources for one new user in database",
-                            responses: {
-                                "200": {
-                                    description: "Add resources for one new user",
-                                }
-                            }
-                        }
-                    })
-
-            // )
-
-            // Guard does not affect the following routes
+                    }
+                }
+            })
             .get('/', async ({ set }: Elysia.Set) => {
                 try {
                     const users = await User.find({});
