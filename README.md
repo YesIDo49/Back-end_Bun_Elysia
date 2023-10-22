@@ -8,7 +8,8 @@ Actuellement les logins sont :
 #### username : admin
 #### password : admin
 
-Ce projet fût un réel challe
+Ce projet fût un réel challenge car Bun est très récent. Là 1.0.0 en septembre 2023. Il y a donc très peu de documentation et de tutoriels sur internet.
+De plus, Bun n'est pas encore compatible avec Windows, il a donc fallu que je trouve une solution pour pouvoir l'utiliser sur mon ordinateur.
 
 - [Installation](#installation)
     - [Bun](#bun)
@@ -41,7 +42,7 @@ Cependant cette dernière ne fonctionnera pas sous Windows.
 - Pour pouvoir utiliser Bun sous Windows, il vous faudra autoriser les sous-systèmes de Linux dans vos paramètres puis installer Ubuntu comme invite de commande.
 - Voici une vidéo qui vous explique comment faire : https://www.youtube.com/watch?v=aNL3gXW0ZuM
 
-Ps : Utiliser Bun sur windows est un véritable challenge, j'ai perdu du temps à essayer de le faire fonctionner. Je vous conseille donc d'utiliser un autre OS si vous le pouvez.
+Ps : Utiliser Bun sur windows est assez difficile, j'ai perdu du temps à essayer de le faire fonctionner. Je vous conseille donc d'utiliser un autre OS si vous le pouvez.
 
 ### Lancer le projet
 
