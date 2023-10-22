@@ -8,6 +8,7 @@ Actuellement les logins sont :
 #### username : admin
 #### password : admin
 
+Ce projet fût un réel challe
 
 - [Installation](#installation)
     - [Bun](#bun)
@@ -23,6 +24,11 @@ Actuellement les logins sont :
 ## Installation
 
 ### Bun
+
+Pour télécharger les dépendances, il vous suffit de lancer la commande suivante :
+```bash
+npm install
+```
 
 Pour télécharger Bun, il vous suffit de lancer la commande suivante :
 ```bash
